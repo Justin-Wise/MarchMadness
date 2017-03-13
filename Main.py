@@ -1,6 +1,7 @@
 from Team import Team
 import Season
-
+from Neural import NeuralNetwork
+from numpy import exp, array, random, dot
 import csv
 def getTeamNames():
 	teamList = []
@@ -19,11 +20,26 @@ def getTeamNames():
 	return teamList
 
 def main():
+	numgames = 0
 	teamList = []
-	for x in range(1001,1464):
+	for x in range(1101,1110):
+		flag = True
 		print x
-		teamList.append(Team(x))
-	print teamList[4].seasons[0].getScoringAverage()
+		T = Team(x)
+		for y in range(0,13):
+			numgames = len(T.seasons[y].games)
+			if (numgames == 0):
+				print "false"
+				flag = False
+				continue
+		if (flag == True):
+			print "Added"
+			teamList.append(T)
+	#print teamList[4].seasons[0].getScoringAverage()
+
+
+
+
 main()
 
 #print tL[i].id

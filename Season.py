@@ -1,5 +1,7 @@
 from __future__ import division
 import csv
+import pandas
+import time
 from Game import Game
 
 
@@ -17,7 +19,6 @@ class Season:
 		with open('RegularSeasonDetailedResults.csv','rb') as theFile:
 			reader = csv.DictReader(theFile)
 			for line in reader:
-				#print line
 				if (self.year == int(line["Season"])):
 					if (self.id == int(line['Wteam'])):
 						game_data = line
@@ -27,9 +28,26 @@ class Season:
 						game_data = line
 						some_game = Game(**game_data)
 						self.games.append(some_game)
-						
+					
+					
+		"""
+		df = pandas.read_csv("RegularSeasonDetailedResults.csv", sep= ",")
+		print time.time() - start_time
+		for index,row in df.iterrows():
+			if(self.year == int(row["Season"])):
+				if (self.id == int(row['Wteam'])):
+					game_data = line
+					some_game = Game(**game_data)
+					self.games.append(some_game)
+				elif (self.id == int(row['Lteam'])):
+					game_data = line
+					some_game = Game(**game_data)
+					self.games.append(some_game)
+		"""
+		
 
 		
+
 	
 					
 
